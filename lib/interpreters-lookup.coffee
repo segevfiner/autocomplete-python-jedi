@@ -82,6 +82,8 @@ module.exports =
       for f in @readDir(project)
         @lookupInterpreters(path.join(project, f, 'bin')).forEach (i) ->
           interpreters.add(i)
+        @lookupInterpreters(path.join(project, f, 'Scripts')).forEach (i) ->
+          interpreters.add(i)
     log.debug 'Project level interpreters found', interpreters
     envPath = (process.env.PATH or '').split path.delimiter
     envPath = new Set(envPath.concat(@possibleGlobalPythonPaths()))
