@@ -38,6 +38,9 @@ module.exports =
 
   isBinary: (filePath) ->
     try
+      if not fs.statSync(filePath).isFile()
+        return false
+
       fs.accessSync filePath, fs.X_OK
       return true
     catch
